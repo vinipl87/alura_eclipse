@@ -1,0 +1,67 @@
+* Testes manuais e automatizados (possuem 3 passos):
+	- Pensar em um cenário;
+	- Executar uma ação;
+	- Validar a saída;
+
+* JUnit: o framework de testes de unidade mais popular do mundo Java
+	OBS: "Para utilizá-lo em um método, o mesmo não pode ser estático, sem retorno e nem receber argumentos:" -> public void deveTestar(){}
+	
+	- A ordem correta dos parâmetros do assertEquals() (e de todos os outros métodos similares) da classe Assert:
+		(esperado, calculado)
+	- O padrão para nomenclatura de classes de teste: "NomeDaClasse"Test: facilita a rastreabilidade das classes de teste.
+	- As classes de teste, por convenção, devem estar no pacote /test com o mesmo caminho da classe real: rastreabilidade dos testes.
+	- O tipo double tem problemas de arredondamento, a versão mais nova do JUnit pede para você passar o "tamanho do erro aceitável".
+		assertEquals(esperado, calculado, 0.00001)
+
+* Testes automatizados de unidade: 
+	Vantagens
+		1) Um teste de unidade executa muito rápido. Veja que ele gasta apenas alguns milissegundos para ser executado. Imagine o tempo que um humano levaria.
+		2) Um humano pode eventualmente executar um teste incorreto (montar o cenário ou validar a saída errada, por exemplo). A máquina nunca fará isso. A partir do momento que você escreveu o teste, ela sempre vai executar o mesmo teste.
+		3) É muito mais divertido escrever um teste automatizado do que testar manualmente.
+		
+		"linhas de código escritas com qualidade", então, muito provavelmente, você será mais produtivo com testes.
+	- Classes de equivalência: testes que são similares
+	"O ideal é escrevermos apenas um único teste para cada possível cenário diferente";
+	"A qualidade do seu código de teste deve ser tão boa quanto a de produção."
+	- Utilizar o importe estático em baterias de teste. Ex: import static org.junit.Assert.assertEquals;
+	
+	- Testes de regressão são importantes para ver o funcionamento de funcionalidades anteriores!
+	- Precisamos sempre garantir todo o conteúdo da lista retornada. Veja que só garantir o tamanho da lista não nos ajuda muito, afinal a lista pode ter o tamanho certo, mas ter o conteúdo inválido.
+	- A bateria de testes automatizados nos ajuda a encontrar problemas na nossa implementação de forma muito rápida.
+	
+	"Foque-se na classe que você está testando. Pense sobre o que você espera dela. Como ela deve funcionar? Se você passar tais parâmetros para ela, como ela deve reagir?"
+
+	- Classes importantes devem ser testadas
+	- Não se deixe enganar. Se o método contém uma regra de negócio, teste-o. Você agradecerá no futuro.
+
+* TDD (Test Driven Development):
+	TDD é uma prática de desenvolvimento de software na qual o programador escreve um teste antes do código. TDD nos traz segurança e feedback constante sobre a qualidade do nosso código.
+	É uma boa prática para todo desenvolvedor de software!
+	
+	Ao invés de escrever o código primeiro, vamos escrever os testes.
+	Simplicidade o tempo todo!
+	
+	1) Escrever um teste
+	2) Fazer o teste passar da maneira mais simples
+	3) Depois com a implementação OK, tempo para refatorar o código.
+	
+	Vantagens:
+		- Se sempre escrevermos o teste antes, garantimos que todo nosso código já "nasce" testado;
+		- Temos segurança para refatorar nosso código, afinal sempre refatoraremos com uma bateria de testes que garante que não quebraremos o comportamento já existente;
+		- Como o teste é a primeira classe que usa o seu código, você naturalmente tende a escrever código mais fácil de ser usado e, por consequência, mais fácil de ser mantido.
+		
+	- O termo dado para a ideia de dar sempre passos pequenos e escrever código simples o tempo todo é conhecido por baby steps.
+		 Segundo o próprio autor da prática, Kent Beck, você deve tomar passos pequenos sempre que sua "confiança sobre o código" estiver baixa. Se você está trabalhando em um trecho de código e está bastante confiante sobre ele, você pode dar passos um pouco maiores.
+		 
+	TDD faz muito sentido ao implementar novas funcionalidades, ao corrigir bugs, ao trabalhar em códigos complexos, etc. Mas às vezes não precisamos seguir o fluxo ideal da prática de TDD.
+	
+	- Devemos refatorar o código de testes.
+	
+	O método Before é executado antes de cada teste da classe. = @Before
+	O método After é executado após a execução do método de teste. = @After
+	Métodos anotados com @BeforeClass são executados apenas uma vez, antes de todos os métodos de teste.
+	Métodos anotados com @AfterClass, por sua vez, é executado uma vez, após a execução do último método de teste da classe.
+	Test Data Builder: Classes cujo o propósito é criar cenários para testes.
+	
+	Framwork Hamcrest: Possui diversos métodos que auxiliam nas validações com assertivas, bem intuitivo e legível.
+	Há a possibilidade de criar próprios Matchers para realizar validações com Hamcrest
